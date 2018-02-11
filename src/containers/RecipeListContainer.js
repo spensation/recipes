@@ -1,5 +1,6 @@
 import React from 'react';
 import { fetchRecipes } from '../actions/recipes';
+import Recipe from '../components/Recipe'
 
 class RecipeListContainer extends React.Component {
   constructor(props) {
@@ -24,14 +25,13 @@ class RecipeListContainer extends React.Component {
   render() {
     return (
       <div>
+        <div>
+          <button className="newRecipeButton">
+            New Recipe
+          </button>
+        </div>
       {this.state.recipes.map((recipe) => {
-        return(
-          <div className="recipe-card" key={recipe.id} >
-            <h4>{recipe.title}</h4>
-            <p>{recipe.category}</p>
-            <p>{recipe.serves}</p>
-          </div>
-        )
+        return(<Recipe recipe={recipe} key={recipe.id} />)
       })}
     </div>
     )
