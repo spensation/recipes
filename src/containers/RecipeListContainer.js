@@ -26,9 +26,10 @@ class RecipeListContainer extends React.Component {
       <div>
       {this.state.recipes.map((recipe) => {
         return(
-          <div className="tile" key={recipe.id} >
+          <div className="recipe-card" key={recipe.id} >
             <h4>{recipe.title}</h4>
             <p>{recipe.category}</p>
+            <p>{recipe.serves}</p>
           </div>
         )
       })}
