@@ -34,14 +34,15 @@
 }
 
 .recipe-card {
-  height: 150px;
-  width: 150px;
+  height: 200px;
+  width: 175px;
   margin: 10px;
   background: #536;
   float: left;
   font-size: 15px;
   text-align: left;
   color: white;
+  padding: 5px;
 }
 
 @keyframes App-logo-spin {

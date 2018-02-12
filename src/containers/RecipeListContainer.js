@@ -1,25 +1,14 @@
 import React from 'react';
-import { fetchRecipes } from '../actions/recipes';
-import Recipe from '../components/Recipe'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions/recipes.js';
+import RecipeList from '../components/RecipeList';
 
 class RecipeListContainer extends React.Component {
-  constructor(props) {
-      super(props)
-      this.state = {
-        recipes: []
-      }
-  }
 
   componentDidMount() {
-    let that = this;
-    fetch('/api/v1/recipes')
-    .then(function(response) {
-      return response.json();
-    }).then(function(data) {
-      that.setState({ recipes: data })
-    })
+    return this.props.actions.fetchRecipes();
   }
-
 
 
   render() {
@@ -30,12 +19,18 @@ class RecipeListContainer extends React.Component {
             New Recipe
           </button>
         </div>
-      {this.state.recipes.map((recipe) => {
-        return(<Recipe recipe={recipe} key={recipe.id} />)
-      })}
+      <RecipeList recipes={this.props.recipes} />
     </div>
     )
   }
 };
 
-export default RecipeListContainer
+function mapStateToProps(state) {
+  return {recipes: state.recipes.recipes}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {actions: bindActionCreators(actions, dispatch)}
+}
+
+export const WrapperRecipeListContainer = connect(mapStateToProps, mapDispatchToProps)(RecipeListContainer)
