@@ -10,12 +10,16 @@ class RecipeListContainer extends React.Component {
     return this.props.actions.fetchRecipes();
   }
 
+  handleNewRecipeOnClick() {
+    
+  }
 
   render() {
     return (
       <div>
         <div>
-          <button className="newRecipeButton">
+          <button className="newRecipeButton"
+            onClick={this.handleNewRecipeOnClick.bind(this)}>
             New Recipe
           </button>
         </div>
