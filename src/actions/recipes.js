@@ -9,7 +9,7 @@ export function fetchRecipes() {
   };
 }
 
-export function addNewRecipe(recipe) {
+export function addRecipe(recipe) {
   fetch('/api/v1/recipes', {
     method: 'POST',
     body: JSON.stringify({ recipe })
