@@ -10,8 +10,15 @@ export function fetchRecipes() {
 }
 
 export function addRecipe(recipe) {
-  fetch('/api/v1/recipes', {
-    method: 'POST',
-    body: JSON.stringify({ recipe })
-  }).then(response => response.json());
-};
+  return (dispatch) => {
+    dispatch({ type: 'ADD_RECIPE' });
+    return fetch('/api/v1/recipes', {
+      method: 'POST',
+      body: JSON.stringify({ recipe:  recipe }),
+      headers:{ Accept: "application/json",
+               "Content-Type": "application/json"}
+    }).then(response => response.json())
+      .then(recipe => dispatch({ type: 'ADD_RECIPE', payload: recipe }))
+    };
+      return recipe;
+  }

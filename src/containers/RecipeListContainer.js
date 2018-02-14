@@ -6,23 +6,15 @@ import RecipeList from '../components/RecipeList';
 
 class RecipeListContainer extends React.Component {
 
+
   componentDidMount() {
     return this.props.actions.fetchRecipes();
   }
 
-  handleNewRecipeOnClick() {
-    
-  }
 
   render() {
     return (
-      <div>
-        <div>
-          <button className="newRecipeButton"
-            onClick={this.handleNewRecipeOnClick.bind(this)}>
-            New Recipe
-          </button>
-        </div>
+    <div>
       <RecipeList recipes={this.props.recipes} />
     </div>
     )
