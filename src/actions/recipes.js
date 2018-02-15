@@ -20,5 +20,15 @@ export function addRecipe(recipe) {
     }).then(response => response.json())
       .then(recipe => dispatch({ type: 'ADD_RECIPE', payload: recipe }))
     };
-      return recipe;
   }
+
+  export function deleteRecipe(id, history) {
+    return dispatch => {
+      dispatch({type: 'DELETING_RECIPE'});
+      return fetch(`/api/v1/recipes/${id}`, {
+          method: "DELETE",
+          headers: {Accept: "application/json"}
+      }).then(dispatch({ type: 'DELETE_RECIPE' }))
+        .then(response => response.json())
+    };
+  };

@@ -1,28 +1,14 @@
 import React from 'react';
+import Recipe from './Recipe';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions/recipes.js';
 
 const RecipeList = (props) => {
 
-  handleOnClick() {
-    return deleteReecipe();
-  }
-
   function listRecipes() {
-    return props.recipes.map(recipe => {
-      console.log(recipe)
-      return (
-        <div className="recipe-card">
-        <ul>
-            <h3>{recipe.title}</h3>
-            <h4>{recipe.category}</h4>
-            <h4>{recipe.serves}</h4>
-            <button
-              className="delete-recipe"
-              id={recipe.id}
-              onClick={recipe.handleOnClick.bind(recipe)}
-            >Delete</button>
-          </ul>
-        </div>
-      )
+    return props.recipes.map((recipe, index) => {
+      return <Recipe recipe={recipe} key={index} id={recipe.id}/>
     })
   }
 
@@ -33,4 +19,12 @@ const RecipeList = (props) => {
   )
 }
 
-export default RecipeList;
+function mapStateToProps(state) {
+  return {recipes: state.recipes.recipes}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {actions: bindActionCreators(actions, dispatch)}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeList);
