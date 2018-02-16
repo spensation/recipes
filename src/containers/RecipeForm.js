@@ -22,18 +22,9 @@ class RecipeForm extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
-    const recipe = Object.assign({}, this.state)
-    this.props.addRecipe(recipe);
-    this.setState({
-      title: '',
-      category: '',
-      serves: '',
-      ingredients: '',
-      directions: '',
-      prep_time: '',
-      cook_time: '',
-      total_time: ''
-    })
+    const { addRecipe, history } = this.props;
+    addRecipe(this.state);
+    history.push('/')
   };
 
   titleHandleOnChange(event) {

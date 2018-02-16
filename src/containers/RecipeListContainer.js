@@ -11,6 +11,14 @@ class RecipeListContainer extends React.Component {
     return this.props.actions.fetchRecipes();
   }
 
+  componentWillRecieveProps(nextProps) {
+    this.setState({
+      recipes: [
+        ...nextProps.newRecipes,
+        ...this.state.recipes
+      ]
+    })
+  }
 
   render() {
     return (

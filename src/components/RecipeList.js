@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/recipes.js';
 
 const RecipeList = (props) => {
-
   function listRecipes() {
     return props.recipes.map((recipe, index) => {
       return <Recipe recipe={recipe} key={index} id={recipe.id}/>
