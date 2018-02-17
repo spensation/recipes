@@ -11,6 +11,13 @@ class Recipe extends React.Component {
     this.props.actions.deleteRecipe(id);
   }
 
+  // handleOnSubmit(event) {
+  //   event.preventDefault();
+  //   const { addRecipe, history } = this.props;
+  //   addRecipe(this.state);
+  //   history.push('/')
+  // };
+
   render() {
     let { title, id, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.props.recipe;
 

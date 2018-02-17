@@ -29,7 +29,7 @@ export function recipesReducer(state = initialState, action) {
       return {...state, posting: true}
     case 'DELETE_RECIPE_FULFILLED':
       const recipes = state.recipes.filter( recipe => recipe.id !== action.id);
-      return Object.assign({}, state, { recipes });
+      return { recipes };
     default:
       return state;
   }
