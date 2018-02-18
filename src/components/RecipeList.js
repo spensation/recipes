@@ -9,7 +9,12 @@ import { WrapperRecipeListItem } from './RecipeListItem';
 
 const RecipeList = (props) => {
   const renderRecipes = props.recipes.map(recipe =>
-    <WrapperRecipeListItem history={props.history} key={recipe.index} recipeTitle={recipe.title} recipeId={recipe.id} />
+    <WrapperRecipeListItem
+      history={props.history}
+      key={recipe.id}
+      recipeTitle={recipe.title}
+      recipeId={recipe.id}
+    />
   );
   // return props.recipes.map((recipe, index) => {
   //   return <Recipe recipe={recipe} key={index} id={recipe.id}/>

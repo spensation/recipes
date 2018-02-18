@@ -5,13 +5,15 @@ import Recipe from './Recipe';
 import { fetchRecipe } from '../actions/recipes';
 
 const RecipeShow = (props, dispatch) => {
-  console.log(props);
-  if (!props.recipe && !props.fetching) return null;
-  return (
-    <div>
-      <Recipe recipe={props.recipe.recipe}/>
-    </div>
-  )
+  if (!props.recipe && !props.fetching) {
+    return null;
+  } else {
+    return (
+      <div>
+        <Recipe recipe={props.recipe.recipe}/>
+      </div>
+    )
+  }
 }
 
 // make new reducer for recipe
