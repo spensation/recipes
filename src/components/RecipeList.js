@@ -13,6 +13,8 @@ const RecipeList = (props) => {
       history={props.history}
       key={recipe.id}
       recipeTitle={recipe.title}
+      recipeCategory={recipe.category}
+      recipeServes={recipe.serves}
       recipeId={recipe.id}
     />
   );

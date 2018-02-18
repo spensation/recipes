@@ -4,6 +4,7 @@ const initialState = {
   fetching: false,
   fetched: true,
   recipe: {},
+  recipes: [],
   error: null
 }
 

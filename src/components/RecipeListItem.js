@@ -9,7 +9,9 @@ const RecipeListItem = (props) => {
     props.fetchRecipe(props.recipeId);
     props.history.push(`/recipes/${props.recipeId}`)
     }}>
-    {props.recipeTitle}
+    <p className="recipe-title">{props.recipeTitle}</p>
+    <p className="recipe-category">{props.recipeCategory}</p>
+    <p className="recipe-serves">Yields: {props.recipeServes}</p>
   </div>
   )
 }
