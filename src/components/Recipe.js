@@ -22,7 +22,7 @@ class Recipe extends React.Component {
     let { title, id, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.props.recipe;
 
     return (
-      <div className="recipe-card">
+      <div>
         <h3>{title}</h3>
         <h4>{category}</h4>
         <h4>{serves}</h4>

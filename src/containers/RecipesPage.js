@@ -1,10 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/recipes.js';
 import RecipeList from '../components/RecipeList';
-import RecipeShow from '../components/RecipeShow';
 
 class RecipesPage extends React.Component {
 
@@ -13,24 +11,25 @@ class RecipesPage extends React.Component {
   }
 
   render() {
+    const { recipes, history } = this.props;
     return (
     <div>
-      <RecipeList recipes={this.props.recipes} />
-      <Route path={`${this.props.match.url}/:recipeId`} component={RecipeShow} />
-      <Route exact path={this.props.match.url} render={() => (
-        <h3>Please select a Recipe from the list.</h3>
-      )}/>
+      <RecipeList history={history} recipes={recipes} />
     </div>
     )
   }
 };
 
-function mapStateToProps(state) {
-  return {recipes: state.recipes.recipes}
+const mapStateToProps = (state) => {
+  return {
+    recipes: state.recipes.recipes
+  };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {actions: bindActionCreators(actions, dispatch)}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  };
 }
 
 export const WrapperRecipesPage = connect(mapStateToProps, mapDispatchToProps)(RecipesPage)

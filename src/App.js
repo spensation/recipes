@@ -5,6 +5,7 @@ import './App.css';
 import { WrapperRecipesPage } from './containers/RecipesPage';
 import RecipeForm from './containers/RecipeForm';
 import NavBar from './components/NavBar';
+import RecipeShow from './components/RecipeShow';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           </header>
           <Route exact path="/" component={WrapperRecipesPage} />
           <Route exact path="/new_recipe" component={RecipeForm} />
+          <Route exact path={`/recipes/:recipeId`} component={RecipeShow} />
         </div>
       </Router>
     );

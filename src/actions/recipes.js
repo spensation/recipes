@@ -9,6 +9,16 @@ export function fetchRecipes() {
   };
 }
 
+export function fetchRecipe(recipeId) {
+  console.log("hello?")
+  return (dispatch) => {
+    dispatch({ type: 'FETCH_RECIPE_PENDING' });
+    return fetch(`/api/v1/recipes/${recipeId}`)
+    .then(response => response.json())
+    .then(recipes => dispatch({ type: 'FETCH_RECIPE_FULFILLED', payload: recipes}))
+  };
+}
+
 export function addRecipe(recipe) {
   return (dispatch) => {
     dispatch({ type: 'ADD_RECIPE_PENDING' });
