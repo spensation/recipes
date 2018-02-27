@@ -24,7 +24,7 @@ class NewRecipeFormPage extends Component {
     event.preventDefault();
     const { addRecipe, history } = this.props;
     addRecipe(this.state);
-    history.push('/')
+    history.push('/recipes')
   };
 
   titleHandleOnChange(event) {
