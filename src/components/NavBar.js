@@ -34,45 +34,13 @@ const NavBar = () => {
         }}
       >New Recipe</NavLink>
       <NavLink
-        to="/entrees"
+        to="/recipes"
         exact
         style={link}
         activeStyle={{
           background: 'darkblue'
         }}
-      >Entrees</NavLink>
-      <NavLink
-        to="/starters"
-        exact
-        style={link}
-        activeStyle={{
-          background: 'darkblue'
-        }}
-      >Starters</NavLink>
-      <NavLink
-        to="/salads"
-        exact
-        style={link}
-        activeStyle={{
-          background: 'darkblue'
-        }}
-      >Salads</NavLink>
-      <NavLink
-        to="/soups"
-        exact
-        style={link}
-        activeStyle={{
-          background: 'darkblue'
-        }}
-      >Soups</NavLink>
-      <NavLink
-        to="/desserts"
-        exact
-        style={link}
-        activeStyle={{
-          background: 'darkblue'
-        }}
-      >Desserts</NavLink>
+      >Recipes</NavLink>
     </div>
 
   );

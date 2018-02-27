@@ -2,20 +2,20 @@ import fetch from 'isomorphic-fetch';
 
 export function fetchRecipes() {
   return (dispatch) => {
-    dispatch({ type: 'FETCH_RECIPES_PENDING' });
+    dispatch({ type: 'LOADING_RECIPES' });
     return fetch('/api/v1/recipes')
     .then(response => response.json())
-    .then(recipes => dispatch({ type: 'FETCH_RECIPES_FULFILLED', payload: recipes}))
+    .then(recipes => dispatch({ type: 'FETCH_RECIPES', payload: recipes}))
   };
 }
 
 export function fetchRecipe(recipeId) {
   console.log("hello?")
   return (dispatch) => {
-    dispatch({ type: 'FETCH_RECIPE_PENDING' });
+    dispatch({ type: 'LOADING_RECIPE' });
     return fetch(`/api/v1/recipes/${recipeId}`)
     .then(response => response.json())
-    .then(recipes => dispatch({ type: 'FETCH_RECIPE_FULFILLED', payload: recipes}))
+    .then(recipe => dispatch({ type: 'FETCH_RECIPE', payload: recipe}))
   };
 }
 
@@ -38,7 +38,8 @@ export function addRecipe(recipe) {
       return fetch(`/api/v1/recipes/${id}`, {
           method: "DELETE",
           headers: {Accept: "application/json"}
-      }).then(dispatch({ type: 'DELETE_RECIPE_FULFILLED' }))
-        .then(response => response.json())
+      }).then(response => response.json())
+        .then(recipes => dispatch({ type: 'DELETE_RECIPE_FULFILLED', payload: recipes }))
+
     };
   };

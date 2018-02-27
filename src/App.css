@@ -45,12 +45,39 @@
   padding: 5px;
 }
 
-.recipe-title {
+.recipecard-title {
   font-size: 22px;
 }
 
-.recipe-category {
+.recipecard-category {
   font-size: 18px;
+}
+
+.single-view {
+  height: 1000px;
+  width: 850px;
+  margin: 10px;
+  background: #536;
+  display: inline-block;
+  font-size: 16px;
+  text-align: left;
+  color: white;
+  padding: 25px;
+  border: 5px solid black;
+}
+
+.recipe-title {
+  font-size: 36px;
+  text-align: center;
+}
+
+.view-recipe-link {
+  color: white;
+}
+
+.new-recipe-form {
+  text-align: center;
+  padding: 40px;
 }
 
 @keyframes App-logo-spin {
