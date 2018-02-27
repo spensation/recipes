@@ -34,7 +34,10 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { recipes: state.recipes };
+  return { 
+    recipes: state.recipes,
+    comments: state.comments
+     };
 }
 
 const mapDispatchToProps = (dispatch) => {

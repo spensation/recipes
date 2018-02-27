@@ -7,7 +7,7 @@ const RecipeGrid = (props) => {
     <div className="recipe-card">
       <h4>{recipe.title}</h4>
       <p>{recipe.category}</p>
-      <p>Yeilds: {recipe.serves}</p>
+      <p>Yields: {recipe.serves}</p>
       <Link className="view-recipe-link" to={`/recipes/${recipe.id}`}>View Recipe</Link>
     </div>
   );

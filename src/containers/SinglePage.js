@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Single from '../components/Single';
+import Comments from '../components/Comments';
+import CommentInput from './CommentInput';
 
 
 class SinglePage extends React.Component {
@@ -8,7 +10,8 @@ class SinglePage extends React.Component {
     super();
 
     this.state = {
-      recipe: {}
+      recipe: {},
+      comments: []
     }
   }
 
@@ -19,7 +22,16 @@ class SinglePage extends React.Component {
       .then(recipe => this.setState({ recipe: recipe }))
   }
 
+  handleOnClick(event) {
+    const recipeId = this.props.match.params.recipeId;
+    event.preventDefault();
+    return fetch(`/api/v1/recipes/${recipeId}/comments`)
+      .then(response => response.json())
+      .then(comments => this.setState({ comments: comments }))
+  }
+
   render() {
+    console.log('inSinglePage', this)
     return (
       <div>
         <Single
@@ -32,10 +44,23 @@ class SinglePage extends React.Component {
           ingredients={this.state.recipe.ingredients}
           directions={this.state.recipe.directions}
         />
+        <fieldset className="commments">
+          <button onClick={this.handleOnClick.bind(this)}>
+            View Commments
+          </button>
+          <Comments comments={this.state.comments} />
+          <CommentInput comment={this.state.comment} recipeId={this.state.recipe.id} />
+
+        </fieldset>
       </div>
+        
+      
     )
   }
 }
 
+const mapStateToProps = (state) => {
+  return { comments: state.comments };
+}
 
-export default SinglePage;
+export default connect(mapStateToProps)(SinglePage);

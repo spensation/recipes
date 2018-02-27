@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addRecipe } from '../actions/recipes';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
 
 class NewRecipeFormPage extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class NewRecipeFormPage extends Component {
     }
   }
 
-  handleOnSubmit(event) {
+  handleFormOnSubmit(event) {
     event.preventDefault();
     const { addRecipe, history } = this.props;
     addRecipe(this.state);
@@ -79,7 +81,7 @@ class NewRecipeFormPage extends Component {
     return (
       <div className="new-recipe-form">
         <h2>Add a Recipe</h2>
-        <form onSubmit={this.handleOnSubmit.bind(this)} >
+        <form onSubmit={this.handleFormOnSubmit.bind(this)} >
           <textarea
             cols="60"
             placeholder="Title"
@@ -136,6 +138,18 @@ class NewRecipeFormPage extends Component {
   }
 }
 
+NewRecipeFormPage.propTypes = {
+  title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  serves: PropTypes.string.isRequired,
+  prep_time: PropTypes.string.isRequired,
+  cook_time: PropTypes.string.isRequired,
+  total_time: PropTypes.string.isRequired,
+  ingredients: PropTypes.string.isRequired,
+  ingredients: PropTypes.string.isRequired,
+  directions: PropTypes.string.isRequired
+}
+
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes
@@ -147,5 +161,6 @@ const mapDispatchToProps = (dispatch) => {
     addRecipe: addRecipe
   }, dispatch);
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewRecipeFormPage);
