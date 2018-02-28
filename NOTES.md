@@ -27,3 +27,21 @@ RecipeGrid.js...
       recipeServes={recipe.serves}
       recipeId={recipe.id}
     />
+
+     <CommentInput 
+            comment={this.state.comment} 
+            recipeId={this.state.recipe.id} 
+            addComment={this.props.addComment}
+          />
+
+  handleOnClick(event) {
+    event.preventDefault();
+    const recipeId = this.props.match.params.recipeId;
+    return fetch(`/api/v1/recipes/${recipeId}/comments`)
+      .then(response => response.json())
+      .then(comments => this.setState({ comments: comments }))
+  }
+  
+          <button onClick={this.handleOnClick.bind(this)}>
+            View Commments
+          </button>

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import Comment from './Comment';
+
 
 const Comments = (props) => {
 	console.log('inComments', props)
-	// const renderComments = props.comments.map(comment => 
-	// 	<div>
-	// 		<p>{comment.content}</p>
-	// 	</div>
-	// );
-
+	const comments = props.comments.map(comment => {
+		return <Comment comment={comment} key={comment.id} />
+	})
+	
 	return (
-	  <div>
-		Comments Component
-	  </div>
- 	)
- }
+		<div>
+			{comments}
+		</div>
+	)
+}
 
 export default Comments;

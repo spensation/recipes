@@ -17,8 +17,7 @@ class NewRecipeFormPage extends Component {
       directions: '',
       prep_time: '',
       cook_time: '',
-      total_time: '',
-      user_id: ''
+      total_time: ''
     }
   }
 
@@ -78,6 +77,7 @@ class NewRecipeFormPage extends Component {
   };
 
   render() {
+    console.log('InREcipeFormPage', this)
     return (
       <div className="new-recipe-form">
         <h2>Add a Recipe</h2>

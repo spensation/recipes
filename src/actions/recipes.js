@@ -9,15 +9,15 @@ export function fetchRecipes() {
   };
 }
 
-export function fetchRecipe(recipeId) {
-  console.log("hello?")
-  return (dispatch) => {
-    dispatch({ type: 'LOADING_RECIPE' });
-    return fetch(`/api/v1/recipes/${recipeId}`)
-    .then(response => response.json())
-    .then(recipe => dispatch({ type: 'FETCH_RECIPE', payload: recipe}))
-  };
-}
+// export function fetchRecipe(recipeId) {
+//   console.log("hello?")
+//   return (dispatch) => {
+//     dispatch({ type: 'LOADING_RECIPE' });
+//     return fetch(`/api/v1/recipes/${recipeId}`)
+//     .then(response => response.json())
+//     .then(recipe => dispatch({ type: 'FETCH_RECIPE', payload: recipe}))
+//   };
+// }
 
 export function addRecipe(recipe) {
   return (dispatch) => {

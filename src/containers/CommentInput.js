@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Comments from '../components/Comments';
+import { addComment } from '../actions/comments';
 
 
 class CommentInput extends Component {
@@ -20,14 +22,12 @@ class CommentInput extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
-    const recipeId = this.props.match.params.recipeId;
-   	const { addComment, history } = this.props;
     addComment(this.state);
-    history.push(`/recipes/${recipeId}/comments`)
   };
   
 
   render() {
+    console.log('inCommentInput', this)
     return (
       <div>
       <form onSubmit={(event) => this.handleOnSubmit(event)}>
@@ -53,5 +53,10 @@ const mapStateToProps = (state) => {
 	}
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addComment: addComment
+  },dispatch)
+}
 
-export default connect(mapStateToProps, null)(CommentInput);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentInput);

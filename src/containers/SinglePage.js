@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addComment } from '../actions/comments';
 import Single from '../components/Single';
 import Comments from '../components/Comments';
 import CommentInput from './CommentInput';
@@ -23,35 +25,33 @@ class SinglePage extends React.Component {
   }
 
   handleOnClick(event) {
-    const recipeId = this.props.match.params.recipeId;
     event.preventDefault();
+    const recipeId = this.props.match.params.recipeId;
     return fetch(`/api/v1/recipes/${recipeId}/comments`)
       .then(response => response.json())
       .then(comments => this.setState({ comments: comments }))
   }
 
+
   render() {
     console.log('inSinglePage', this)
+    const { title, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.state.recipe;
     return (
       <div>
         <Single
-          title={this.state.recipe.title}
-          category={this.state.recipe.category}
-          serves={this.state.recipe.serves}
-          prep_time={this.state.recipe.prep_time}
-          cook_time={this.state.recipe.cook_time}
-          total_time={this.state.recipe.total_time}
-          ingredients={this.state.recipe.ingredients}
-          directions={this.state.recipe.directions}
+          title={title}
+          category={category}
+          serves={serves}
+          prep_time={prep_time}
+          cook_time={cook_time}
+          total_time={total_time}
+          ingredients={ingredients}
+          directions={directions}
         />
-        <fieldset className="commments">
-          <button onClick={this.handleOnClick.bind(this)}>
+        <button onClick={this.handleOnClick.bind(this)}>
             View Commments
           </button>
-          <Comments comments={this.state.comments} />
-          <CommentInput comment={this.state.comment} recipeId={this.state.recipe.id} />
-
-        </fieldset>
+        <Comments comments={this.state.comments} />
       </div>
         
       
@@ -60,7 +60,16 @@ class SinglePage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { comments: state.comments };
+  return { 
+    comments: state.comments,
+    recipe: state.recipe
+  };
 }
 
-export default connect(mapStateToProps)(SinglePage);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addComment: addComment
+  },dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SinglePage);
