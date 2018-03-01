@@ -15,7 +15,6 @@ class RecipeGridPage extends React.Component {
   }
 
   render(){
-    console.log('in RecipeGridPage', this)
     return (
       <div>
         <RecipeGrid recipes={this.props.recipes} history={this.props.history}/>      
