@@ -22,7 +22,9 @@ class CommentInput extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
+    const recipeId = this.props.recipeId
     this.props.addComment(this.state, this.props.recipeId);
+    document.getElementById('commentsubmit').value = '';
   };
   
 
@@ -33,7 +35,8 @@ class CommentInput extends Component {
       <form onSubmit={(event) => this.handleOnSubmit(event)}>
         <p>
           <label> Add a Comment </label>
-          <input
+          <textArea
+            id="commentsubmit"
             type="text"
             value={this.state.text}
             onChange={(event) => this.handleChange(event)}

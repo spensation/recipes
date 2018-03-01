@@ -24,7 +24,7 @@ class SinglePage extends React.Component {
       .then(recipe => this.setState({ recipe: recipe }))
   }
 
-  handleOnClick(event) {
+  handleViewCommentsOnClick(event) {
     event.preventDefault();
     const recipeId = this.props.match.params.recipeId;
     return fetch(`/api/v1/recipes/${recipeId}/comments`)
@@ -49,11 +49,14 @@ class SinglePage extends React.Component {
           ingredients={ingredients}
           directions={directions}
         />
-        <button onClick={this.handleOnClick.bind(this)}>
-            View Commments
-          </button>
+        <button 
+          className="view-comments-button" 
+          onClick={this.handleViewCommentsOnClick.bind(this)}
+          >View Commments
+        </button>
         <Comments comments={this.state.comments} />
         <CommentInput 
+          history={this.props.history}
           comment={this.state.comment} 
           recipeId={this.props.match.params.recipeId} 
           addComment={this.props.addComment}

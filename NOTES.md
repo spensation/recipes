@@ -45,3 +45,10 @@ RecipeGrid.js...
           <button onClick={this.handleOnClick.bind(this)}>
             View Commments
           </button>
+
+
+<button 
+          className="view-comments-button" 
+          onClick={this.handleViewCommentsOnClick.bind(this)}
+          >View Commments
+        </button>

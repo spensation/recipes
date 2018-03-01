@@ -81,6 +81,15 @@
   padding: 40px;
 }
 
+.comment {
+  margin: 15px;
+  padding: 5px;
+}
+
+.view-comments-button {
+  background-color: pink;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
