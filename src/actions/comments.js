@@ -5,10 +5,21 @@ export function addComment(comment, recipeId) {
     dispatch({ type: 'ADD_COMMENT_PENDING' });
     return fetch(`/api/v1/recipes/${recipeId}/comments`, {
       method: 'POST',
-      body: JSON.stringify({ comment:  comment }),
+      body: JSON.stringify({ comment }),
       headers:{ Accept: "application/json",
                "Content-Type": "application/json"}
-    }).then(response => response.json())
-      .then(comment => dispatch({ type: 'ADD_COMMENT_FULFILLED', payload: comment }))
-    };
+    }).then(response => {
+      if (!response.ok) { throw response }
+        return response.json()
+    })
+      .then(comment => {
+        comment => dispatch({ type: 'ADD_COMMENT_FULFILLED', payload: comment })
+    })
+      .catch( err => {
+        err.text().then( errorMessage => {
+          console.log(errorMessage)
+        })
+      })
   }
+}
+

@@ -35,6 +35,7 @@ class SinglePage extends React.Component {
 
   render() {
     console.log('inSinglePage', this)
+    const recipeId = this.props.match.params.recipeId;
     const { title, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.state.recipe;
     return (
       <div>
@@ -52,6 +53,11 @@ class SinglePage extends React.Component {
             View Commments
           </button>
         <Comments comments={this.state.comments} />
+        <CommentInput 
+          comment={this.state.comment} 
+          recipeId={this.props.match.params.recipeId} 
+          addComment={this.props.addComment}
+        />
       </div>
         
       

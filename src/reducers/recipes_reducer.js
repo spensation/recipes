@@ -23,7 +23,7 @@ export function recipeReducer(state = {
     case 'FETCH_RECIPE':
       return Object.assign({}, state, { loading: false, recipe: action.payload })
     case 'ADD_RECIPE_PENDING':
-      return {...state, posting:true}
+      return {...state, posting: true}
     case 'ADD_RECIPE_FULFILLED':
       // const recipe =  Object.assign({}, action.recipe);
       // return Object.assign({}, state, {recipes: state.recipes.concat(recipe) });

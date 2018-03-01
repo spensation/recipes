@@ -1,16 +1,20 @@
 export function commentsReducer(state = {
-	loading: true,
-	comments: []
+	comments: {
+		loading: true,
+		content: ' ' 
+	}
 }, action) {
 	switch(action.type) {
-	    case 'LOADING_COMMENTS':
+	    case 'ADD_COMMENT_PENDING':
 	      return Object.assign({}, state, { loading: true });
-	    case 'ADD_COMMENT':
+	    case 'ADD_COMMENT_FULFILLED':
 	      return {
-	        ...state,
-	        posting: false,
-	        posted: true,
-	        comment: action.payload.comment
+	        comments: {
+	        	...state.comments,
+	        	posting: false,
+		        posted: true,
+		        comment: action.payload.comment
+	        }	        
 	      }
 	    default:
 	      return state;

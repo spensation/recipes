@@ -23,9 +23,8 @@ class NewRecipeFormPage extends Component {
 
   handleFormOnSubmit(event) {
     event.preventDefault();
-    const { addRecipe, history } = this.props;
-    addRecipe(this.state);
-    history.push('/recipes')
+    this.props.addRecipe(this.state);
+    this.props.history.push('/recipes')
   };
 
   titleHandleOnChange(event) {

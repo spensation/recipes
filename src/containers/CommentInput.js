@@ -22,7 +22,7 @@ class CommentInput extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
-    addComment(this.state);
+    this.props.addComment(this.state, this.props.recipeId);
   };
   
 
@@ -39,7 +39,6 @@ class CommentInput extends Component {
             onChange={(event) => this.handleChange(event)}
           />
           <input type="submit" />
-          <Comments content={this.state.content}/>
         </p>
       </form>
       </div>
