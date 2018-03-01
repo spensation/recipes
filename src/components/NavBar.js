@@ -22,25 +22,26 @@ const NavBar = () => {
         style={link}
         /* add prop for activeStyle */
         activeStyle={{
-          background: '#FFF9FF'
+          background: 'pink'
         }}
       >Home</NavLink>
-      <NavLink
-        to="/new_recipe"
-        exact
-        style={link}
-        activeStyle={{
-          background: 'darkblue'
-        }}
-      >New Recipe</NavLink>
       <NavLink
         to="/recipes"
         exact
         style={link}
         activeStyle={{
-          background: 'darkblue'
+          background: 'pink'
         }}
       >Recipes</NavLink>
+      <NavLink
+        to="/new_recipe"
+        exact
+        style={link}
+        activeStyle={{
+          background: 'pink'
+        }}
+      >New Recipe</NavLink>
+      
     </div>
 
   );

@@ -4,7 +4,9 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="app-title">Recipes</h1>
+        <p className="App-intro">Welcome to the Recipes App! 
+        Please share your favorite recipes with the community.  
+        Check back often for new recipe ideas!</p>
       </div>
     )
   }

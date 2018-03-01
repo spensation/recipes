@@ -22,6 +22,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
+          <h1 className="App-title">Recipes</h1>
           <NavBar />
           <Route exact path="/" component={Main} />
           <Route exact path="/new_recipe" component={NewRecipeFormPage} />

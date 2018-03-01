@@ -15,11 +15,22 @@
 }
 
 .App-title {
-  font-size: 4.5em;
+  text-decoration: underline;
+  text-decoration-style: double;
+  font-size: 60px;
+  font-style: italic;
+  text-align: center;
+  color: #536;
 }
 
 .App-intro {
-  font-size: large;
+  font-size: 24px;
+  margin: 80px;
+}
+
+.navbar {
+  text-align: center;
+  padding: 40px;
 }
 
 .newRecipeButton {
