@@ -1,44 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addComment } from '../actions/comments';
+import { addComment, fetchComments } from '../actions/comments';
+import { fetchRecipe } from '../actions/recipes';
 import Single from '../components/Single';
 import Comments from '../components/Comments';
 import CommentInput from './CommentInput';
+import Like from './Like';
 
 
 class SinglePage extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      recipe: {},
-      comments: []
-    }
-  }
+  
 
   componentDidMount() {
     const recipeId = this.props.match.params.recipeId;
-    return fetch(`/api/v1/recipes/${recipeId}`)
-      .then(response => response.json())
-      .then(recipe => this.setState({ recipe: recipe }))
+    this.props.fetchRecipe(recipeId);
   }
 
   handleViewCommentsOnClick(event) {
     event.preventDefault();
     const recipeId = this.props.match.params.recipeId;
-    return fetch(`/api/v1/recipes/${recipeId}/comments`)
-      .then(response => response.json())
-      .then(comments => this.setState({ comments: comments }))
+    this.props.fetchComments(recipeId)
   }
 
 
   render() {
     console.log('inSinglePage', this)
     const recipeId = this.props.match.params.recipeId;
-    const { title, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.state.recipe;
+    const { title, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.props.recipe;
     return (
       <div>
+        <Like 
+          value={this.props.likes} 
+          history={this.props.history}
+          recipeId={this.props.match.params.recipeId} 
+          />
         <Single
           title={title}
           category={category}
@@ -54,10 +50,9 @@ class SinglePage extends React.Component {
           onClick={this.handleViewCommentsOnClick.bind(this)}
           >View Commments
         </button>
-        <Comments comments={this.state.comments} />
+        <Comments comments={this.props.comments} />
         <CommentInput 
           history={this.props.history}
-          comment={this.state.comment} 
           recipeId={this.props.match.params.recipeId} 
           addComment={this.props.addComment}
         />
@@ -70,14 +65,17 @@ class SinglePage extends React.Component {
 
 const mapStateToProps = (state) => {
   return { 
-    comments: state.comments,
-    recipe: state.recipe
+    comments: state.comments.comments,
+    recipe: state.recipe.recipe,
+    likes: state.recipe.likes
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addComment: addComment
+    addComment: addComment,
+    fetchRecipe: fetchRecipe,
+    fetchComments: fetchComments
   },dispatch)
 }
 

@@ -23,3 +23,12 @@ export function addComment(comment, recipeId) {
   }
 }
 
+
+export function fetchComments(recipeId) {
+  return (dispatch) => {
+    dispatch({ type: 'LOADING_COMMENTS' });
+    return fetch(`/api/v1/recipes/${recipeId}/comments`)
+      .then(response => response.json())
+      .then(comments => dispatch({ type: 'COMMENTS_LOADED', payload: comments}))
+  }
+}

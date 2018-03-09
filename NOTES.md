@@ -1,3 +1,42 @@
+dispatch({ type: 'ADD_LIKE_FULFILLED', payload: like})
+
+import React from 'react';
+
+class Counter extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      counter: 0
+    }
+
+
+  }
+
+  handleOnClick(event) {
+    this.setState({
+      counter: this.state.counter + 1 
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleOnClick.bind(this)}>Like</button>
+        <p>{this.state.counter}</p>
+      </div>
+
+    )
+  }
+
+
+}
+
+
+
+export default Counter;
+
+import Counter from '../containers/Counter';
+
 const recipes = this.props.recipes.map(recipe =>
     <div className="recipe-card" key={recipe.id}>
       <h3>{recipe.title}</h3>

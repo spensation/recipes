@@ -145,7 +145,6 @@ NewRecipeFormPage.propTypes = {
   cook_time: PropTypes.string.isRequired,
   total_time: PropTypes.string.isRequired,
   ingredients: PropTypes.string.isRequired,
-  ingredients: PropTypes.string.isRequired,
   directions: PropTypes.string.isRequired
 }
 

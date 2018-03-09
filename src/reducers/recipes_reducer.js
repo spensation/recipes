@@ -15,13 +15,14 @@ export function recipesReducer(state = {
 
 export function recipeReducer(state = {
   loading: true,
-  recipe: {}
+  recipe: {},
+  likes: ''
 }, action) {
   switch(action.type) {
     case 'LOADING_RECIPE':
       return Object.assign({}, state, { loading: true });
-    case 'FETCH_RECIPE':
-      return Object.assign({}, state, { loading: false, recipe: action.payload })
+    case 'RECIPE_LOADED':
+      return Object.assign({}, state, { loading: false, recipe: action.payload, likes: action.payload.likes.length })
     case 'ADD_RECIPE_PENDING':
       return {...state, posting: true}
     case 'ADD_RECIPE_FULFILLED':
@@ -32,6 +33,11 @@ export function recipeReducer(state = {
         posting: false,
         posted: true,
         recipe: action.payload.recipe
+      }
+    case 'ADD_LIKE_FULFILLED':
+      return {
+        ...state,
+        likes: state.likes + 1
       }
     case 'DELETE_RECIPE_PENDING':
       return {...state, posting: true}

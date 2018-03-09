@@ -5,7 +5,7 @@ import { commentsReducer } from './comments_reducer';
 const rootReducer = combineReducers({
   recipes: recipesReducer,
   recipe: recipeReducer,
-  comments: commentsReducer
+  comments: commentsReducer,
 });
 
 export default rootReducer;

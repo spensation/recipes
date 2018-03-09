@@ -29,13 +29,12 @@ class CommentInput extends Component {
   
 
   render() {
-    console.log('inCommentInput', this)
     return (
       <div>
       <form onSubmit={(event) => this.handleOnSubmit(event)}>
         <p>
           <label> Add a Comment </label>
-          <textArea
+          <textarea
             id="commentsubmit"
             type="text"
             value={this.state.text}

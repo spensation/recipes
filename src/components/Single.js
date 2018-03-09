@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Single = (props) => {
-  console.log('in  single', props)
   return (
     <div className="single-view">
       <h1 className="recipe-title">{props.title}</h1>

@@ -9,7 +9,7 @@ const Comments = (props) => {
 	})
 	
 	return (
-		<div classname='comments'>
+		<div className='comments'>
 			{comments}
 		</div>
 	)
