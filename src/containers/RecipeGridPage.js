@@ -8,16 +8,10 @@ import RecipeGrid from '../components/RecipeGrid';
 
 
 class RecipeGridPage extends React.Component {
-  
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.props.history.push('/recipes')
-    }
-  }
 
-  componentDidMount() {
-      this.props.fetchRecipes();
-  }
+  // componentDidMount() {
+  //     this.props.fetchRecipes();
+  // }
 
   render(){
     console.log('inRecipeGridPage', this)
@@ -36,7 +30,6 @@ class RecipeGridPage extends React.Component {
 const mapStateToProps = (state) => {
   return { 
     recipes: state.recipes,
-    likes: state.recipe.likes
   };
 }
 

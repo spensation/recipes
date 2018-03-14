@@ -81,39 +81,48 @@ class NewRecipeFormPage extends Component {
       <div className="new-recipe-form">
         <h2>Add a Recipe</h2>
         <form onSubmit={this.handleFormOnSubmit.bind(this)} >
+
           <textarea
             cols="60"
             placeholder="Title"
             ref="title"
             onChange={this.titleHandleOnChange.bind(this)} />
             <br />
-          <textarea
-            cols="60"
-            placeholder="Category"
-            ref="category"
-            onChange={this.categoryHandleOnChange.bind(this)} />
-            <br />
-          <textarea
-            cols="12"
-            placeholder="Serves"
-            ref="serves"
-            onChange={this.servesHandleOnChange.bind(this)} />
+          <select onChange={this.categoryHandleOnChange.bind(this)}>
+            <option value="" disabled selected hidden>Select a category</option>
+            <option value="Entree">Entree</option>
+            <option value="Starter">Starter</option>
+            <option value="Soup/Salad">Soup/Salad</option>
+            <option value="Dessert">Dessert</option>
+          </select>
+          <br />
+          <select onChange={this.servesHandleOnChange.bind(this)}>
+            <option value="" disabled selected hidden>How many servings?</option>
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="8+">8+</option>
+          </select>
+        <br />
           <textarea
             cols="13"
             placeholder="Prep Time"
             ref="prep_time"
             onChange={this.preptimeHandleOnChange.bind(this)} />
+            <br />
           <textarea
             cols="13"
             placeholder="Cook Time"
             ref="cook_time"
             onChange={this.cooktimeHandleOnChange.bind(this)} />
+            <br />
           <textarea
             cols="13"
             placeholder="Total Time"
             ref="total_time"
             onChange={this.totaltimeHandleOnChange.bind(this)} />
           <br />
+          
           <textarea
             cols="60"
             rows="10"

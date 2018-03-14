@@ -1,24 +1,29 @@
 
-export function recipesReducer(state = {
+// export function recipesReducer(state = {
+//   loading: true,
+//   recipes: []
+// }, action) {
+//   switch(action.type) {
+//     case 'LOADING_RECIPES':
+//       return Object.assign({}, state, { loading: true });
+//     case 'FETCH_RECIPES':
+//       return Object.assign({}, state, { loading: false, recipes: action.payload });
+//     default:
+//       return state;
+//   }
+// }
+
+export function recipeReducer(state = {
   loading: true,
-  recipes: []
+  recipes: [],
+  recipe: {},
+  likes: ''
 }, action) {
   switch(action.type) {
     case 'LOADING_RECIPES':
       return Object.assign({}, state, { loading: true });
     case 'FETCH_RECIPES':
       return Object.assign({}, state, { loading: false, recipes: action.payload });
-    default:
-      return state;
-  }
-}
-
-export function recipeReducer(state = {
-  loading: true,
-  recipe: {},
-  likes: ''
-}, action) {
-  switch(action.type) {
     case 'LOADING_RECIPE':
       return Object.assign({}, state, { loading: true });
     case 'RECIPE_LOADED':
@@ -26,18 +31,30 @@ export function recipeReducer(state = {
     case 'ADD_RECIPE_PENDING':
       return {...state, posting: true}
     case 'ADD_RECIPE_FULFILLED':
-      // const recipe =  Object.assign({}, action.recipe);
-      // return Object.assign({}, state, {recipes: state.recipes.concat(recipe) });
-      return {
-        ...state,
-        posting: false,
-        posted: true,
-        recipe: action.payload.recipe
-      }
+    
+      return Object.assign({}, state, {recipe: state.recipes.concat(action.payload) });
+      // return {
+      //   ...state,
+      //   recipe: action.payload.recipe
+      // }
     case 'ADD_LIKE_FULFILLED':
+    const recipeId = action.payload.recipe_id
+   // const updatedRecipes = Object.assign({}, state, {recipes: recipes.recipes.recipe.likes.push(action.payload) )
+      const updatedRecipes = state.recipes.map(recipe => {
+        if (recipe.id === recipeId) {
+          
+          return Object.assign({}, recipe, { likes: recipe.likes.concat(action.payload)})
+        }
+        else {
+          return recipe
+        }
+      })
+
+      
       return {
         ...state,
-        likes: state.likes + 1
+        recipes: updatedRecipes 
+
       }
     case 'DELETE_RECIPE_PENDING':
       return {...state, posting: true}

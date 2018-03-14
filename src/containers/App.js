@@ -14,9 +14,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends React.Component {
 
-  // componentDidMount() {
-  //     return this.props.fetchRecipes();
-  // }
+  componentDidMount() {
+      return this.props.fetchRecipes();
+  }
 
   render() {
     return (

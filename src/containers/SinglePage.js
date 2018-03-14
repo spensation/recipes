@@ -27,11 +27,14 @@ class SinglePage extends React.Component {
   render() {
     console.log('inSinglePage', this)
     const recipeId = this.props.match.params.recipeId;
-    const { title, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.props.recipe;
-    return (
+    const { title, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.props.recipe
+    
+
+    return this.props.recipe.likes ? 
+    (
       <div>
         <Like 
-          value={this.props.likes} 
+          value={this.props.recipe.likes.length} 
           history={this.props.history}
           recipeId={this.props.match.params.recipeId} 
           />
@@ -60,13 +63,17 @@ class SinglePage extends React.Component {
         
       
     )
+
+    : null
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  
+  const recipeId = +props.match.params.recipeId
   return { 
     comments: state.comments.comments,
-    recipe: state.recipe.recipe,
+    recipe: state.recipes.recipes.find(recipe => recipe.id === recipeId),
     likes: state.recipe.likes
   };
 }
