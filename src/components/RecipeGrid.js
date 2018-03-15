@@ -6,7 +6,10 @@ import Like from '../containers/Like';
 
 const RecipeGrid = (props) => {
   console.log('inRecipeGrid', props)
-  const renderRecipes = props.recipes.recipes.map((recipe, index) =>
+  const comparator = function (a, b) {
+    return b.likes.length - a.likes.length;
+  };
+  const renderRecipes = props.recipes.recipes.sort(comparator).map((recipe, index) =>
     <div key={index} className="recipe-card">
       <Like recipeId={recipe.id} value={recipe.likes.length}/>
       <h4>{recipe.title}</h4>
