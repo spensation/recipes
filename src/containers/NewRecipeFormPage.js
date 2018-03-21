@@ -95,7 +95,7 @@ class NewRecipeFormPage extends Component {
             <option value="Soup/Salad">Soup/Salad</option>
             <option value="Dessert">Dessert</option>
           </select>
-          <br />
+        
           <select onChange={this.servesHandleOnChange.bind(this)}>
             <option value="" disabled selected hidden>How many servings?</option>
             <option value="2">2</option>
@@ -109,13 +109,13 @@ class NewRecipeFormPage extends Component {
             placeholder="Prep Time"
             ref="prep_time"
             onChange={this.preptimeHandleOnChange.bind(this)} />
-            <br />
+            
           <textarea
             cols="13"
             placeholder="Cook Time"
             ref="cook_time"
             onChange={this.cooktimeHandleOnChange.bind(this)} />
-            <br />
+           
           <textarea
             cols="13"
             placeholder="Total Time"

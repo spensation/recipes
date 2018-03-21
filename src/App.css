@@ -65,8 +65,8 @@
 }
 
 .single-view {
-  height: 1000px;
-  width: 850px;
+  height: auto;
+  width: auto;
   margin: 10px;
   background: #536;
   display: inline-block;
