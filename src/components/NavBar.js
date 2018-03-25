@@ -40,7 +40,15 @@ const NavBar = () => {
         activeStyle={{
           background: 'pink'
         }}
-      >New Recipe</NavLink>
+      >Add a Recipe</NavLink>
+      <NavLink
+        to="/popular"
+        exact
+        style={link}
+        activeStyle={{
+          background: 'pink'
+        }}
+      >Popular Recipes</NavLink>
       
     </div>
 

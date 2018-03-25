@@ -9,7 +9,7 @@ const RecipeGrid = (props) => {
   const comparator = function (a, b) {
     return b.likes.length - a.likes.length;
   };
-  const renderRecipes = props.recipes.recipes.sort(comparator).map((recipe, index) =>
+  const renderRecipes = props.recipes.sort(comparator).map((recipe, index) =>
     <div key={index} className="recipe-card">
       <Like recipeId={recipe.id} value={recipe.likes.length}/>
       <h4>{recipe.title}</h4>

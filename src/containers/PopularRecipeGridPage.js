@@ -25,7 +25,8 @@ class RecipeGridPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return { 
-    recipes: state.recipes.recipes,
+    recipes: state.recipes.recipes.filter(recipe => recipe.likes.length > 50)
+
   };
 }
 
@@ -36,3 +37,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeGridPage);
+
