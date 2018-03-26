@@ -3,8 +3,10 @@ import fetch from 'isomorphic-fetch';
 export function fetchRecipes() {
   return (dispatch) => {
     dispatch({ type: 'LOADING_RECIPES' });
-    return fetch('https://warm-caverns-93574.herokuapp.com/api/v1/recipes')
-    .then(response => response.json())
+    return fetch('https://warm-caverns-93574.herokuapp.com/api/v1/recipes', {
+      headers:{ Accept: "application/json",
+               "Content-Type": "application/json"}
+    }).then(response => response.json())
     .then(recipes => dispatch({ type: 'FETCH_RECIPES', payload: recipes}))
   };
 }
