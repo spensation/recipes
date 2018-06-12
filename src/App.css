@@ -30,7 +30,23 @@
 
 .navbar {
   text-align: center;
-  padding: 40px;
+}
+
+.navlink {
+  display: inline;
+
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    text-align: center;
+    width: 40%;
+    margin: auto;
+  }
+
+  .navlink {
+    display: block;
+  }
 }
 
 .newRecipeButton {

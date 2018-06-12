@@ -15,6 +15,7 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <NavLink
+        className="navlink"
         to="/"
         /* set exact so it knows only to only set activeStyle when route is deeply equal to link */
         exact
@@ -26,6 +27,7 @@ const NavBar = () => {
         }}
       >Home</NavLink>
       <NavLink
+        className="navlink"
         to="/recipes"
         exact
         style={link}
@@ -34,6 +36,7 @@ const NavBar = () => {
         }}
       >Recipes</NavLink>
       <NavLink
+        className="navlink"
         to="/new_recipe"
         exact
         style={link}
@@ -42,6 +45,7 @@ const NavBar = () => {
         }}
       >Add a Recipe</NavLink>
       <NavLink
+        className="navlink"
         to="/popular"
         exact
         style={link}
