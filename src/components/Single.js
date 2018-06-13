@@ -10,7 +10,7 @@ const Single = (props) => {
       <p className="recipe-cook_time"><strong>Cooking Time:</strong> {props.cook_time}</p>
       <p className="recipe-total_time"><strong>Total Time:</strong> {props.total_time}</p>
       <h3 className="ingredients-list-heading">Ingredients:</h3>
-      <p className="recipe-ingredients">{props.ingredients}</p>
+      {props.ingredients.split(",").map(ingredient => (<p className="recipe-ingredients">{ingredient}</p>))}
       <h3 className="Preparation-heading">Preparation:</h3>
       <p className="recipe-directions">{props.directions}</p>
     </div>
