@@ -7,7 +7,7 @@ const rootReducer = combineReducers({
   recipes: recipeReducer,
   recipe: recipeReducer,
   comments: commentsReducer,
-  form: formReducer
+  form: formReducer,
 });
 
 export default rootReducer;
