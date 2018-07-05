@@ -9,7 +9,7 @@ import RecipeGridPage from './RecipeGridPage';
 import NavBar from '../components/NavBar';
 import SinglePage from './SinglePage';
 // import NewRecipeFormPage from './NewRecipeFormPage';
-import RecipeForm from './RecipeForm';
+import NewRecipeFormPage from './NewRecipeFormPage';
 import PopularRecipeGridPage from './PopularRecipeGridPage'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -27,7 +27,7 @@ class App extends React.Component {
           <h1 className="App-title">Recipes</h1>
           <NavBar />
           <Route exact path="/" component={Main} />
-          <Route exact path="/new_recipe" component={RecipeForm} />
+          <Route exact path="/new_recipe" component={NewRecipeFormPage}/>
           <Route exact path="/recipes" component={RecipeGridPage} />
           <Route path={`/recipes/:recipeId`} component={SinglePage} />
           <Route exact path="/popular" component={PopularRecipeGridPage} />

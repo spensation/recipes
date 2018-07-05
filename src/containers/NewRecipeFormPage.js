@@ -13,7 +13,7 @@ class NewRecipeFormPage extends Component {
       title: '',
       category: '',
       serves: '',
-      ingredients: '',
+      ingredients: [{ name: '' }],
       directions: '',
       prep_time: '',
       cook_time: '',
@@ -53,7 +53,7 @@ class NewRecipeFormPage extends Component {
 
   cooktimeHandleOnChange(event) {
     this.setState({
-      cook_time: event.target.value
+      cook_time: event.target.value 
     })
   };
 
@@ -63,11 +63,25 @@ class NewRecipeFormPage extends Component {
     })
   };
 
-  ingredientsHandleOnChange(event) {
-    this.setState({
-      ingredients: event.target.value
-    })
+  ingredientsHandleOnChange = (index) => (event) => {
+    const newIngredients = this.state.ingredients.map((ingredient, ingidx) => {
+      if (index !== ingidx) return ingredient;
+      return {...ingredient, name: event.target.value };
+    });
+    this.setState({ ingredients: newIngredients })
   };
+
+  handleAddIngredient = () => {
+    this.setState({
+      ingredients: this.state.ingredients.concat([{ name: ''}])
+    });
+  }
+
+  handleRemoveIngredient = (index) => () => {
+    this.setState({
+      ingredients: this.state.ingrdients.filter((ing, ingidx) => index !== ingidx)
+    });
+  }
 
   directionsHandleOnChange(event) {
     this.setState({
@@ -81,65 +95,85 @@ class NewRecipeFormPage extends Component {
       <div className="new-recipe-form">
         <h2>Add a Recipe</h2>
         <form onSubmit={this.handleFormOnSubmit.bind(this)} >
-
-          <textarea
-            cols="60"
-            placeholder="Title"
-            ref="title"
-            onChange={this.titleHandleOnChange.bind(this)} />
+          <div>
+            <textarea
+              cols="60"
+              placeholder="Title"
+              ref="title"
+              onChange={this.titleHandleOnChange.bind(this)} />
+          </div>
             <br />
-          <select onChange={this.categoryHandleOnChange.bind(this)}>
-            <option value="" disabled selected hidden>Select a category</option>
-            <option value="Entree">Entree</option>
-            <option value="Starter">Starter</option>
-            <option value="Soup/Salad">Soup/Salad</option>
-            <option value="Dessert">Dessert</option>
-          </select>
-        
-          <select onChange={this.servesHandleOnChange.bind(this)}>
-            <option value="" disabled selected hidden>How many servings?</option>
-            <option value="2">2</option>
-            <option value="4">4</option>
-            <option value="6">6</option>
-            <option value="8+">8+</option>
-          </select>
-        <br />
-          <textarea
-            cols="13"
-            placeholder="Prep Time"
-            ref="prep_time"
-            onChange={this.preptimeHandleOnChange.bind(this)} />
-            
-          <textarea
-            cols="13"
-            placeholder="Cook Time"
-            ref="cook_time"
-            onChange={this.cooktimeHandleOnChange.bind(this)} />
-           
-          <textarea
-            cols="13"
-            placeholder="Total Time"
-            ref="total_time"
-            onChange={this.totaltimeHandleOnChange.bind(this)} />
+          <div>
+            <select onChange={this.categoryHandleOnChange.bind(this)}>
+              <option value="" disabled selected hidden>Select a category</option>
+              <option value="Entree">Entree</option>
+              <option value="Starter">Starter</option>
+              <option value="Soup/Salad">Soup/Salad</option>
+              <option value="Dessert">Dessert</option>
+            </select>
+          </div>
+          <div>
+            <select onChange={this.servesHandleOnChange.bind(this)}>
+              <option value="" disabled selected hidden>How many servings?</option>
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8+">8+</option>
+            </select>
+          </div>
           <br />
+          <div>
+            <textarea
+              cols="13"
+              placeholder="Prep Time"
+              ref="prep_time"
+              onChange={this.preptimeHandleOnChange.bind(this)} />
+          </div>
           
-          <textarea
-            cols="60"
-            rows="10"
-            placeholder="Ingredients"
-            ref="ingredients"
-            onChange={this.ingredientsHandleOnChange.bind(this)} />
-          <br />
-          <textarea
-            cols="60"
-            rows="15"
-            placeholder="Directions"
-            ref="directions"
-            onChange={this.directionsHandleOnChange.bind(this)} />
+          <div>  
+            <textarea
+              cols="13"
+              placeholder="Cook Time"
+              ref="cook_time"
+              onChange={this.cooktimeHandleOnChange.bind(this)} />
+          </div>
+          
+          <div> 
+            <textarea
+              cols="13"
+              placeholder="Total Time"
+              ref="total_time"
+              onChange={this.totaltimeHandleOnChange.bind(this)} />
             <br />
-          <input
-            type="submit"
-            value="Add Recipe" />
+          </div>
+
+          {this.state.ingredients.map((ingredient, index) => (
+              <div>
+                <input
+                  type="text"
+                  placeholder={`Ingredient #${index + 1} name`}
+                  value={ingredient.name}
+                  onChange={this.ingredientsHandleOnChange.bind(this)} />
+                <button type="button" onClick={this.handleRemoveIngredient(index)}>-</button>
+              </div>
+            ))}
+            <button type="button" onClick={this.handleAddIngredient}>Add Ingredient</button>
+          
+          <br />
+          <div>
+            <textarea
+              cols="60"
+              rows="15"
+              placeholder="Directions"
+              ref="directions"
+              onChange={this.directionsHandleOnChange.bind(this)} />
+          </div>
+          <br />
+          <div>
+            <input
+              type="submit"
+              value="Add Recipe" />
+          </div>
         </form>
       </div>
     )

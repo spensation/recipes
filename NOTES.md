@@ -1,3 +1,9 @@
+// API addr for production build:
+https://warm-caverns-93574.herokuapp.com/api/v1/recipes
+
+//API addr for local dev:
+http://localhost:3001/api/vi/recipes
+
 dispatch({ type: 'ADD_LIKE_FULFILLED', payload: like})
 
 import React from 'react';
