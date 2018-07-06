@@ -63,10 +63,13 @@ class NewRecipeFormPage extends Component {
     })
   };
 
-  ingredientsHandleOnChange = (index) => (event) => {
+  ingredientsHandleOnChange(event, index) {
     const newIngredients = this.state.ingredients.map((ingredient, ingidx) => {
-      if (index !== ingidx) return ingredient;
-      return {...ingredient, name: event.target.value };
+      // if (index !== ingidx) {
+      //   return ingredient;
+      // } else {
+        return {...ingredient, name: event.target.value };
+      // }
     });
     this.setState({ ingredients: newIngredients })
   };
@@ -79,7 +82,7 @@ class NewRecipeFormPage extends Component {
 
   handleRemoveIngredient = (index) => () => {
     this.setState({
-      ingredients: this.state.ingrdients.filter((ing, ingidx) => index !== ingidx)
+      ingredients: this.state.ingredients.filter((ing, ingidx) => index !== ingidx)
     });
   }
 
