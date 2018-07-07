@@ -13,7 +13,7 @@ class NewRecipeFormPage extends Component {
       title: '',
       category: '',
       serves: '',
-      ingredients: [{ name: '' }],
+      ingredients: [],
       directions: '',
       prep_time: '',
       cook_time: '',
@@ -63,26 +63,25 @@ class NewRecipeFormPage extends Component {
     })
   };
 
-  ingredientsHandleOnChange(event, index) {
-    const newIngredients = this.state.ingredients.map((ingredient, ingidx) => {
-      // if (index !== ingidx) {
-      //   return ingredient;
-      // } else {
-        return {...ingredient, name: event.target.value };
-      // }
-    });
-    this.setState({ ingredients: newIngredients })
+  handleIngredientsOnChange(i, event) {
+    console.log('handleIngOnChange', i, event.target, this.state)
+    let ingredients = [...this.state.ingredients];
+    ingredients[i] = event.target.value ;
+    this.setState({ ingredients });
   };
 
-  handleAddIngredient = () => {
-    this.setState({
-      ingredients: this.state.ingredients.concat([{ name: ''}])
-    });
+  handleAddIngredient(){
+    console.log('from handleAddIngredient', this )
+    this.setState(prevState => ({
+      ingredients: [...prevState.ingredients, '']
+    }));
   }
 
-  handleRemoveIngredient = (index) => () => {
+  handleRemoveIngredient(i){
+    let ingredients = [...this.state.ingredients];
+    ingredients.splice(i, 1);
     this.setState({
-      ingredients: this.state.ingredients.filter((ing, ingidx) => index !== ingidx)
+      ingredients: ingredients
     });
   }
 
@@ -93,20 +92,19 @@ class NewRecipeFormPage extends Component {
   };
 
   render() {
-    console.log('InREcipeFormPage', this)
+    console.log('InREcipeFormPage', this.state)
     return (
       <div className="new-recipe-form">
         <h2>Add a Recipe</h2>
         <form onSubmit={this.handleFormOnSubmit.bind(this)} >
-          <div>
-            <textarea
-              cols="60"
+          <div className="recipe-form-title">
+            <input
               placeholder="Title"
               ref="title"
               onChange={this.titleHandleOnChange.bind(this)} />
           </div>
             <br />
-          <div>
+          <div className="recipe-form-category-select">
             <select onChange={this.categoryHandleOnChange.bind(this)}>
               <option value="" disabled selected hidden>Select a category</option>
               <option value="Entree">Entree</option>
@@ -115,7 +113,7 @@ class NewRecipeFormPage extends Component {
               <option value="Dessert">Dessert</option>
             </select>
           </div>
-          <div>
+          <div className="recipe-form-serves-select">
             <select onChange={this.servesHandleOnChange.bind(this)}>
               <option value="" disabled selected hidden>How many servings?</option>
               <option value="2">2</option>
@@ -125,45 +123,41 @@ class NewRecipeFormPage extends Component {
             </select>
           </div>
           <br />
-          <div>
-            <textarea
-              cols="13"
+          <div className="recipe-form-prep">
+            <input
               placeholder="Prep Time"
               ref="prep_time"
               onChange={this.preptimeHandleOnChange.bind(this)} />
           </div>
           
-          <div>  
-            <textarea
-              cols="13"
+          <div className="recipe-form-cook">  
+            <input
               placeholder="Cook Time"
               ref="cook_time"
               onChange={this.cooktimeHandleOnChange.bind(this)} />
           </div>
           
-          <div> 
-            <textarea
-              cols="13"
+          <div className="recipe-form-total"> 
+            <input
               placeholder="Total Time"
               ref="total_time"
               onChange={this.totaltimeHandleOnChange.bind(this)} />
-            <br />
           </div>
 
           {this.state.ingredients.map((ingredient, index) => (
-              <div>
+              <div key={index}>
                 <input
                   type="text"
                   placeholder={`Ingredient #${index + 1} name`}
-                  value={ingredient.name}
-                  onChange={this.ingredientsHandleOnChange.bind(this)} />
-                <button type="button" onClick={this.handleRemoveIngredient(index)}>-</button>
+                  value={ingredient || ''}
+                  onChange={this.handleIngredientsOnChange.bind(this, index)} />
+                <button type="button" onClick={this.handleRemoveIngredient.bind(this, index)}>-</button>
               </div>
             ))}
-            <button type="button" onClick={this.handleAddIngredient}>Add Ingredient</button>
+            <button type="button" onClick={this.handleAddIngredient.bind(this)}>Add Ingredient</button>
           
           <br />
-          <div>
+          <div className="recipe-form-directions">
             <textarea
               cols="60"
               rows="15"
@@ -172,7 +166,7 @@ class NewRecipeFormPage extends Component {
               onChange={this.directionsHandleOnChange.bind(this)} />
           </div>
           <br />
-          <div>
+          <div className="recipe-form-submit">
             <input
               type="submit"
               value="Add Recipe" />
@@ -190,7 +184,7 @@ NewRecipeFormPage.propTypes = {
   prep_time: PropTypes.string.isRequired,
   cook_time: PropTypes.string.isRequired,
   total_time: PropTypes.string.isRequired,
-  ingredients: PropTypes.string.isRequired,
+  ingredients: PropTypes.array.isRequired,
   directions: PropTypes.string.isRequired
 }
 
