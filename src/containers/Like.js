@@ -16,8 +16,8 @@ class Like extends React.Component {
   	console.log('in Like.js', this)
     return (
       <div>
-        <button onClick={this.handleOnClick.bind(this)}>Like</button>
-        <p>{this.props.value}</p>
+        <button onClick={this.handleOnClick.bind(this)} className="like-button">Like</button>
+        <p className="likes">{this.props.value}</p>
       </div>
 
     )

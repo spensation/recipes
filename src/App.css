@@ -37,17 +37,6 @@
 
 }
 
-@media only screen and (max-width: 600px) {
-  .navbar {
-    text-align: center;
-    width: 40%;
-    margin: auto;
-  }
-
-  .navlink {
-    display: block;
-  }
-}
 
 .newRecipeButton {
   background: green;
@@ -61,7 +50,7 @@
 }
 
 .recipe-card {
-  height: 65vh;
+  height: 50vh;
   width: 33%;
   margin: 20px;
   background: white;
@@ -80,10 +69,24 @@
 .recipecard-image {
   margin: auto;
   position: relative;
+  height: 14vh;
+  width: 20 vw;
 }
 
 .recipecard-category {
   font-size: 2vw;
+}
+
+.like-button {
+  background-color: blue;
+  border-radius: 8px;
+  color: white;
+  display: inline;
+  float: left;
+}
+
+.likes {
+  display: inline;
 }
 
 .single-view {
@@ -125,4 +128,17 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    text-align: center;
+    width: 40%;
+    margin: auto;
+  }
+
+  .navlink {
+    display: block;
+  }
 }
