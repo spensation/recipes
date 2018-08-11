@@ -5,6 +5,7 @@ import { addComment, fetchComments } from '../actions/comments';
 import { fetchRecipe } from '../actions/recipes';
 import Single from '../components/Single';
 import Comments from '../components/Comments';
+import Ingredients from '../components/Ingredients';
 import CommentInput from './CommentInput';
 import Like from './Like';
 
@@ -25,12 +26,11 @@ class SinglePage extends React.Component {
 
 
   render() {
-    console.log('inSinglePage', this)
+    console.log('inSinglePage', this.props)
     const recipeId = this.props.match.params.recipeId;
-    const { title, category, serves, prep_time, cook_time, total_time, ingredients, directions } = this.props.recipe
     
 
-    return this.props.recipe.likes ? 
+    return this.props.likes ? 
     (
       <div>
         <Like 
@@ -39,20 +39,22 @@ class SinglePage extends React.Component {
           recipeId={this.props.match.params.recipeId} 
           />
         <Single
-          title={title}
-          category={category}
-          serves={serves}
-          prep_time={prep_time}
-          cook_time={cook_time}
-          total_time={total_time}
-          ingredients={ingredients}
-          directions={directions}
+          title={this.props.recipe.title}
+          category={this.props.recipe.category}
+          serves={this.props.recipe.serves}
+          prep_time={this.props.recipe.prep_time}
+          cook_time={this.props.recipe.cook_time}
+          total_time={this.props.recipe.total_time}
+          
+          directions={this.props.recipe.directions}
         />
+        <Ingredients />
         <button 
           className="view-comments-button" 
           onClick={this.handleViewCommentsOnClick.bind(this)}
           >View Commments
         </button>
+        <Ingredients ingredients={this.props.ingredients} />
         <Comments comments={this.props.comments} />
         <CommentInput 
           history={this.props.history}
@@ -74,7 +76,8 @@ const mapStateToProps = (state, props) => {
   return { 
     comments: state.comments.comments,
     recipe: state.recipes.recipes.find(recipe => recipe.id === recipeId),
-    likes: state.recipe.likes
+    likes: state.recipe.likes, 
+    ingredients: state.ingredients.ingredients
   };
 }
 

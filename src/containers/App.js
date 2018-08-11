@@ -29,7 +29,7 @@ class App extends React.Component {
           <Route exact path="/" component={Main} />
           <Route exact path="/new_recipe" component={NewRecipeFormPage}/>
           <Route exact path="/recipes" component={RecipeGridPage} />
-          <Route path={`/recipes/:recipeId`} component={SinglePage} />
+          <Route exact path={`/recipes/:recipeId`} component={SinglePage} />
           <Route exact path="/popular" component={PopularRecipeGridPage} />
         </div>
       </Router>
@@ -40,7 +40,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return { 
     recipes: state.recipes,
-    comments: state.comments
+    comments: state.comments,
+    ingredients: state.ingredients
      };
 }
 

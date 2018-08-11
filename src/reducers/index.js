@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
 import { recipeReducer } from './recipes_reducer';
 import { commentsReducer } from './comments_reducer';
-import { reducer as formReducer } from 'redux-form'
+import { ingredientsReducer } from './ingredients_reducer';
+
 
 const rootReducer = combineReducers({
   recipes: recipeReducer,
   recipe: recipeReducer,
   comments: commentsReducer,
-  form: formReducer,
+  ingredients: ingredientsReducer,
 });
 
 export default rootReducer;

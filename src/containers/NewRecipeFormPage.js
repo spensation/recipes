@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addRecipe } from '../actions/recipes';
+import { addIngredient } from '../actions/ingredients';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
@@ -17,13 +18,17 @@ class NewRecipeFormPage extends Component {
       directions: '',
       prep_time: '',
       cook_time: '',
-      total_time: ''
+      total_time: '',
+      selectedFile: null
     }
   }
 
   handleFormOnSubmit(event) {
+    console.log('FormSubmit', this.state)
     event.preventDefault();
+    const recipeId = this.props.recipeId;
     this.props.addRecipe(this.state);
+    this.props.addIngredient(this.state.ingredients, recipeId);
     this.props.history.push('/recipes')
   };
 
@@ -63,11 +68,11 @@ class NewRecipeFormPage extends Component {
     })
   };
 
-  handleIngredientsOnChange(i, event) {
-    console.log('handleIngOnChange', i, event.target, this.state)
-    let ingredients = [...this.state.ingredients];
-    ingredients[i] = event.target.value ;
-    this.setState({ ingredients });
+  handleIngredientsOnChange(e, index) {
+    console.log('inHandleIngredientOnChange', this.state)
+    const ingredients =  this.state.ingredients.slice();
+    ingredients[index] = e.target.value;
+    this.setState({ ingredients: ingredients })
   };
 
   handleAddIngredient(){
@@ -90,6 +95,13 @@ class NewRecipeFormPage extends Component {
       directions: event.target.value
     })
   };
+
+  fileChangedHandler(event) {
+    this.setState({
+      selectedFile: event.target.files[0]}
+      )
+  }
+
 
   render() {
     console.log('InREcipeFormPage', this.state)
@@ -144,14 +156,14 @@ class NewRecipeFormPage extends Component {
               onChange={this.totaltimeHandleOnChange.bind(this)} />
           </div>
 
-          {this.state.ingredients.map((ingredient, index) => (
-              <div key={index}>
+          {this.state.ingredients.map((ingredient, i) => (
+              <div key={i}>
                 <input
                   type="text"
-                  placeholder={`Ingredient #${index + 1} name`}
-                  value={ingredient || ''}
-                  onChange={this.handleIngredientsOnChange.bind(this, index)} />
-                <button type="button" onClick={this.handleRemoveIngredient.bind(this, index)}>-</button>
+                  placeholder={`Ingredient #${i + 1} name`}
+                  value={this.state.i}
+                  onChange={(event) => this.handleIngredientsOnChange(event, this.index)} />
+                <button type="button" onClick={this.handleRemoveIngredient.bind(this, i)}>-</button>
               </div>
             ))}
             <button type="button" onClick={this.handleAddIngredient.bind(this)}>Add Ingredient</button>
@@ -166,6 +178,14 @@ class NewRecipeFormPage extends Component {
               onChange={this.directionsHandleOnChange.bind(this)} />
           </div>
           <br />
+          <div className="recipe-form-image">
+            <label>Add an image: </label>
+            <input 
+              type="file" 
+              onChange={this.fileChangedHandler.bind(this)}
+            />
+          </div>
+          <br/>
           <div className="recipe-form-submit">
             <input
               type="submit"
@@ -184,7 +204,6 @@ NewRecipeFormPage.propTypes = {
   prep_time: PropTypes.string.isRequired,
   cook_time: PropTypes.string.isRequired,
   total_time: PropTypes.string.isRequired,
-  ingredients: PropTypes.array.isRequired,
   directions: PropTypes.string.isRequired
 }
 
@@ -196,7 +215,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addRecipe: addRecipe
+    addRecipe: addRecipe,
+    addIngredient: addIngredient
   }, dispatch);
 };
 

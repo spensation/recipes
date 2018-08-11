@@ -1,4 +1,4 @@
-
+import { SEARCH } from '../actions/recipes';
 // export function recipesReducer(state = {
 //   loading: true,
 //   recipes: []
@@ -17,7 +17,9 @@ export function recipeReducer(state = {
   loading: true,
   recipes: [],
   recipe: {},
-  likes: ''
+  likes: '',
+  searchText: ''
+  
 }, action) {
   switch(action.type) {
     case 'LOADING_RECIPES':
@@ -53,7 +55,14 @@ export function recipeReducer(state = {
     case 'DELETE_RECIPE_FULFILLED':
       const recipes = state.recipes.filter( recipe => recipe.id !== action.id);
       return { recipes };
+    case 'SEARCH': {
+      console.log('fromRecipeReducer', action)
+      return Object.assign({}, state, {
+        value: action.text
+      })
+    }
     default:
       return state;
+
   }
 }

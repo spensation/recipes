@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { fetchRecipes } from '../actions/recipes';
 import RecipeGrid from '../components/RecipeGrid';
-import Search from './Search';
+import SearchBar from './SearchBar';
 
 
 class RecipeGridPage extends React.Component {
@@ -14,7 +14,7 @@ class RecipeGridPage extends React.Component {
     console.log('inRecipeGridPage', this)
     return (
       <div>
-        <Search />
+        <SearchBar />
         <RecipeGrid 
           recipes={this.props.recipes} 
           history={this.props.history} 

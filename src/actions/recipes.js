@@ -1,5 +1,11 @@
 import fetch from 'isomorphic-fetch';
 
+export const SEARCH = 'SEARCH';
+
+export function search(value) {
+  return { type: SEARCH, value };
+}
+
 export function fetchRecipes() {
   return (dispatch) => {
     dispatch({ type: 'LOADING_RECIPES' });
