@@ -61,23 +61,29 @@
 }
 
 .recipe-card {
-  height: 250px;
-  width: 175px;
+  height: 65vh;
+  width: 33%;
   margin: 20px;
-  background: #536;
+  background: white;
   float: left;
   font-size: 16px;
-  text-align: left;
-  color: white;
+  text-align: center;
+  color: black;
   padding: 5px;
+  border: 0.25vw solid #536;
 }
 
 .recipecard-title {
-  font-size: 22px;
+  font-size: 5vw;
+}
+
+.recipecard-image {
+  margin: auto;
+  position: relative;
 }
 
 .recipecard-category {
-  font-size: 18px;
+  font-size: 2vw;
 }
 
 .single-view {
@@ -99,7 +105,7 @@
 }
 
 .view-recipe-link {
-  color: white;
+  color: black;
 }
 
 .new-recipe-form {

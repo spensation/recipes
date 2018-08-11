@@ -14,7 +14,7 @@ const RecipeGrid = (props) => {
     <div key={index} className="recipe-card">
       <Like recipeId={recipe.id} value={recipe.likes.length}/>
       <h4>{recipe.title}</h4>
-      <Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Cugz52oSiaOPM4jygndlFZ4YDF2-jhkwUnNdCFE5Tp3uEsZi5g"/>
+      <Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Cugz52oSiaOPM4jygndlFZ4YDF2-jhkwUnNdCFE5Tp3uEsZi5g" className="recipecard-image"/>
       <p>{recipe.category}</p>
       <p>Yields: {recipe.serves}</p>
       <Link className="view-recipe-link" to={`/recipes/${recipe.id}`}>View Recipe</Link>
